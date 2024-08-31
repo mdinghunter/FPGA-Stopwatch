@@ -1,9 +1,9 @@
 `timescale 1ns / 1ps
 
 module PWM_dimmer (
-  input clk,
-  input logic [3:0] w,
-  input logic [7:0] seg,
+  input              clk,
+  input logic [3:0]  w,
+  input logic [7:0]  seg,
   output logic [7:0] seg_out
 );
   

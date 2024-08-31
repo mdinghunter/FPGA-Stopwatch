@@ -3,9 +3,9 @@
 module stopwatch_tb ();
 
   // declaration
-  logic clk; 
-  logic clr; 
-  logic go;
+  logic       clk; 
+  logic       clr; 
+  logic       go;
   logic [3:0] d5, d4, d3, d2, d1, d0;
 
   // instatiation

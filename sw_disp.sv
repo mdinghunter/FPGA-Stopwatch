@@ -1,10 +1,10 @@
 `timescale 1ns / 1ps
 
 module sw_disp(
-  input logic clk,
-  input logic clr,
-  input logic go,
-  input logic [3:0] w,
+  input logic        clk,
+  input logic        rst,
+  input logic        en,
+  input logic [3:0]  w,
   output logic [7:0] an,
   output logic [7:0] seg_out
 );
@@ -17,8 +17,8 @@ module sw_disp(
   // instantiation
   stopwatch time_logic (
     .clk,
-    .clr,
-    .go,
+    .rst,
+    .en,
     .d5, .d4, .d3, .d2, .d1, .d0
   );
 
@@ -30,8 +30,8 @@ module sw_disp(
   );
 
   // register
-  always_ff @(posedge clk, posedge clr) begin
-    if (clr) counter_reg <= 0;
+  always_ff @(posedge clk, posedge rst) begin
+    if (rst) counter_reg <= 0;
     else if (counter_reg < 6 * 10 ** 5) counter_reg <= counter_next;
     else counter_reg <= 0;
   end

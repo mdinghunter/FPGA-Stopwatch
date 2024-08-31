@@ -2,9 +2,9 @@
 
 module stopwatch
 (
-    input  logic clk,
-    input  logic clr,
-    input  logic go,
+    input  logic      clk,
+    input  logic      rst,
+    input  logic      en,
     output logic [3:0] d5, d4, d3, d2, d1, d0
 );
 
@@ -29,8 +29,8 @@ module stopwatch
 
     // next-state logic
     // 0.01 sec tick generator: mod-1M
-    assign cs_next = (clr || (cs_reg == DVSR && go)) ? 20'b0 :
-                     (go) ? cs_reg + 1 :
+    assign cs_next = (rst || (cs_reg == DVSR && en)) ? 20'b0 :
+                     (en) ? cs_reg + 1 :
                      cs_reg;
 
     assign cs_tick = (cs_reg == DVSR) ? 1'b1 : 1'b0;
@@ -46,7 +46,7 @@ module stopwatch
     d5_next = d5_reg;
 
     // reset
-    if (clr) begin
+    if (rst) begin
       d0_next = 4'b0000;
       d1_next = 4'b0000;
       d2_next = 4'b0000;
