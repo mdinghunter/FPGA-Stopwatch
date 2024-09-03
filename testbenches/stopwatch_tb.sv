@@ -4,16 +4,16 @@ module stopwatch_tb ();
 
   // declaration
   logic       clk; 
-  logic       clr; 
-  logic       go;
-  logic [3:0] d5, d4, d3, d2, d1, d0;
+  logic       rst; 
+  logic       en;
+  logic [3:0] d7, d6, d5, d4, d3, d2, d1, d0;
 
   // instatiation
   stopwatch dut (
     .clk,
-    .clr,
-    .go,
-    .d5, .d4, .d3, .d2, .d1, .d0
+    .rst,
+    .en,
+    .d7, .d6, .d5, .d4, .d3, .d2, .d1, .d0
   );
 
   // generate clk
